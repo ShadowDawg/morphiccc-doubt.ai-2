@@ -47,13 +47,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+    
+    <head>
     <Analytics />
-    {/* <head>
-        
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      {/* <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet/">
-    </head> */}
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet/"> */}
+    </head>
       
       <body className={cn('font-sans antialiased', fontSans.variable)}>
         <ThemeProvider
