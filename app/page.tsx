@@ -11,12 +11,17 @@ const Header = () => {
     //     Clear your JEE/NEET doubts. Instantly😳. 
     //   </p>
     // </div>
+
+    // <div className="responsiveHeader">
+    //   <h1 className="responsiveH1">doubt.ai✍🏻</h1>
+    //   <p className="responsiveP">
+    //     Clear your JEE/NEET doubts. Instantly😳. 
+    //   </p>
+    // </div>
     <div className="responsiveHeader">
-      <h1 className="responsiveH1">doubt.ai✍🏻</h1>
-      <p className="responsiveP">
-        Clear your JEE/NEET doubts. Instantly😳. 
-      </p>
-    </div>
+     <h1 style={{ fontSize: '70px', margin: '10px 0', fontFamily: 'var(--font-sans)' }}>✍🏻</h1>
+     </div>
+
   );
 };
 
