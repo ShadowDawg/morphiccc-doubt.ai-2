@@ -98,6 +98,9 @@ async function submit(formData?: FormData, skip?: boolean) {
           : msg
       ) as ExperimentalMessage[]
       answer = await writer(uiStream, streamText, modifiedMessages)
+      let answr = await researcher(uiStream, streamText, modifiedMessages)
+      console.log(answer)
+      console.log(answr)
     } else {
       streamText.done()
     }

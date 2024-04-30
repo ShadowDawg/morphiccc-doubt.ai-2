@@ -74,3 +74,32 @@
     @apply bg-background text-foreground;
   }
 }
+
+.responsiveHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.responsiveH1 {
+  font-size: 40px; /* Default size */
+  margin: 10px 0;
+  font-family: var(--font-sans);
+}
+
+.responsiveP {
+  font-size: 18px; /* Default size */
+  text-align: center;
+  max-width: 600px;
+  font-family: var(--font-sans);
+}
+
+@media (min-width: 768px) {
+  .responsiveH1 {
+    font-size: 70px;
+  }
+  .responsiveP {
+    font-size: 30px;
+  }
+}
