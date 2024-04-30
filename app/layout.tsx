@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import { Analytics } from "@vercel/analytics/react"
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -46,6 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+    <Analytics />
     {/* <head>
         
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
