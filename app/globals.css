@@ -97,6 +97,18 @@
   display: block; /* Ensure it's always displayed by default */
 }
 
+.responsiveImage {
+  width: 40px; /* Default size for small screens */
+  height: 40px; /* Maintain aspect ratio */
+}
+
+@media (min-width: 768px) { /* Adjust for larger screens */
+  .responsiveImage {
+    width: 70px;
+    height: 70px;
+  }
+}
+
 @media (max-width: 768px) {
   /* .responsiveH1 {
     font-size: 70px;

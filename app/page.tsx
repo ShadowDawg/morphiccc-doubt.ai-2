@@ -30,7 +30,8 @@ export default function Page() {
   return (
     <div>
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
-      <Header />
+      {/* <Header /> */}
+      <img src="/logo.png" className="responsiveImage" alt="Responsive" />
       <Chat />
     </div>
     
