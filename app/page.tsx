@@ -6,20 +6,23 @@ export const runtime = 'edge'
 const Header = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
-      <h1 style={{ fontSize: '24px', margin: '10px 0' }}>Doubt.ai✍🏻</h1>
-      <p style={{ fontSize: '16px', textAlign: 'center', maxWidth: '600px' }}>
-        Welcome to Doubt.ai, where all your queries are answered instantly with the help of AI!
+      <h1 style={{ fontSize: '70px', margin: '10px 0', fontFamily: 'var(--font-sans)' }}>doubt.ai✍🏻</h1>
+      <p style={{ fontSize: '30px', textAlign: 'center', maxWidth: '600px', fontFamily: 'var(--font-sans)' }}>
+        Clear your JEE/NEET doubts. Instantly😳. 
       </p>
     </div>
   );
 };
 
 export default function Page() {
-  return <Chat />
-  // return (
-  //   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
-  //     <Header />
-  //     <Chat />
-  //   </div>
-  // );
+  //return <Chat />
+  return (
+    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
+      {/* <Header /> */}
+      <Chat />
+    </div>
+    
+    </div>
+  );
 }

@@ -3,21 +3,26 @@ import { ArrowRight } from 'lucide-react'
 
 const exampleMessages = [
   {
-    heading: 'Why is Nvidia growing rapidly?',
-    message: 'Why is Nvidia growing rapidly?'
+    heading: `What's the 2nd law of thermodynamics?`,
+    message: `What's the 2nd law of thermodynamics?`
+  },
+  // {
+  //   heading: `Explain Newton's 2nd law of motion and its application in pendulums.`,
+  //   message: `Explain Newton's 2nd law of motion and its application in pendulums.`
+  // },
+  // {
+  //   heading: `How does a hydrogen bomb work?🤐`,
+  //   message: `How does a hydrogen bomb work?`
+  // },
+  {
+    heading: `Teach me entropy beacause I wasted 11th grade.😔`,
+    message: `Teach me entropy beacause I wasted 11th grade.`
   },
   {
-    heading: 'Is the Apple Vision Pro worth buying?',
-    message: 'Is the Apple Vision Pro worth buying?'
+    heading: `What's 9 + 10?🥵`,
+    message: `What's 9 + 10?`
   },
-  {
-    heading: 'How does the Vercel AI SDK work?',
-    message: 'How does the Vercel AI SDK work?'
-  },
-  {
-    heading: 'Tesla vs Rivian',
-    message: 'Tesla vs Rivian'
-  }
+
 ]
 export function EmptyScreen({
   submitMessage,

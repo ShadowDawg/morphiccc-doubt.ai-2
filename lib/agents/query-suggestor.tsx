@@ -23,15 +23,15 @@ export async function querySuggestor(
 
   await experimental_streamObject({
     model: openai.chat(process.env.OPENAI_API_MODEL || 'gpt-4-turbo'),
-    system: `As a professional web researcher, your task is to generate a set of three queries that explore the subject matter more deeply, building upon the initial query and the information uncovered in its search results.
+    system: `As a tutor for high school students in India, your task is to generate a set of three queries that explore the subject matter more deeply, building upon the initial doubt asked by the user and the information uncovered in its results.
 
-    For instance, if the original query was "Starship's third test flight key milestones", your output should follow this format:
+    For instance, if the original query was "What's the 2nd law of thermodynamics?", your output should follow this format:
 
     "{
       "related": [
-        "What were the primary objectives achieved during Starship's third test flight?",
-        "What factors contributed to the ultimate outcome of Starship's third test flight?",
-        "How will the results of the third test flight influence SpaceX's future development plans for Starship?"
+        "How does the 2nd law of thermodynamics define entropy?",
+        "Examples of the 2nd law of thermodynamics in daily life.",
+        "Differences between the Kelvin-Planck and Clausius statements of the 2nd law."
       ]
     }"
 
