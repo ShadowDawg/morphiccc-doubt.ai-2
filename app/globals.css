@@ -98,14 +98,14 @@
 }
 
 .responsiveImage {
-  width: 40px; /* Default size for small screens */
-  height: 40px; /* Maintain aspect ratio */
+  width: 80px; /* Default size for small screens */
+  height: 80px; /* Maintain aspect ratio */
 }
 
 @media (min-width: 768px) { /* Adjust for larger screens */
   .responsiveImage {
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    height: 150px;
   }
 }
 
