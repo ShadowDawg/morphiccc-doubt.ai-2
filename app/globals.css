@@ -86,6 +86,7 @@
   font-size: 40px; /* Default size */
   margin: 10px 0;
   font-family: var(--font-sans);
+  display: block; /* Ensure it's always displayed by default */
 }
 
 .responsiveP {
@@ -93,13 +94,23 @@
   text-align: center;
   max-width: 600px;
   font-family: var(--font-sans);
+  display: block; /* Ensure it's always displayed by default */
 }
 
-@media (min-width: 768px) {
-  .responsiveH1 {
+@media (max-width: 768px) {
+  /* .responsiveH1 {
     font-size: 70px;
   }
   .responsiveP {
     font-size: 30px;
+  }
+   */
+   .responsiveH1, .responsiveP {
+    display: none; /* Hide text */
+  }
+  .responsiveH1::after {
+    content: "✍🏻"; /* Show only emoji */
+    display: block;
+    font-size: 70px; /* Large emoji size */
   }
 }
