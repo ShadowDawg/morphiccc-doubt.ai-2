@@ -197,7 +197,7 @@ async function get_sol(
 ): Promise<any> {
 
   // Constructing the URL where the Flask API is listening
-  const apiUrl = 'http://127.0.0.1:5000/solve_problem';
+  const apiUrl = 'https://doubt-ai-2.el.r.appspot.com/solve_problem';
 
   // Setting up the request options for a POST request
   const options = {
