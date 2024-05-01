@@ -22,7 +22,8 @@ export async function querySuggestor(
   )
 
   await experimental_streamObject({
-    model: openai.chat(process.env.OPENAI_API_MODEL || 'gpt-4-turbo'),
+    //model: openai.chat(process.env.OPENAI_API_MODEL || 'gpt-4-turbo'),
+    model: openai.chat('gpt-3.5-turbo'),
     system: `As a tutor for high school students in India, your task is to generate a set of three queries that explore the subject matter more deeply, building upon the initial doubt asked by the user and the information uncovered in its results.
 
     For instance, if the original query was "What's the 2nd law of thermodynamics?", your output should follow this format:
