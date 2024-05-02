@@ -9,6 +9,8 @@ import { ChevronDown } from 'lucide-react'
 import { StreamableValue, useStreamableValue } from 'ai/rsc'
 import { cn } from '@/lib/utils'
 import { Separator } from './ui/separator'
+import 'katex/dist/katex.min.css';
+import Latex from 'react-latex-next';
 
 interface CollapsibleMessageProps {
   message: {
@@ -33,6 +35,12 @@ export const CollapsibleMessage: React.FC<CollapsibleMessageProps> = ({
 
   // if not collapsed, return the component
   if (!isCollapsed) {
+    // return <Latex>
+    //   $$ x + 2 = 5 $$
+    //   ## Hmmm
+    //   1. Hi
+    //   2. `Hello`
+    //   </Latex> // WORKS WELL!
     return message.component
   }
 

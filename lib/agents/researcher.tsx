@@ -60,7 +60,7 @@ export async function researcher(
 
   You must enclose your LaTeX expression between $$ or $$$ for inline and displayed math respectively.
   For example:
-  Inline math: \`Let $$ P_1 = 100 $$\`
+  Inline math: Let $$ P_1 = 100 $$
   Displayed math:
   $$
   P_2 = 50
@@ -198,6 +198,9 @@ async function get_sol(
 
   // Constructing the URL where the Flask API is listening
   const apiUrl = 'https://doubt-ai-2.el.r.appspot.com/solve_problem';
+
+  // Local testing
+  // const apiUrl = 'http://127.0.0.1:5000/solve_problem';
 
   // Setting up the request options for a POST request
   const options = {
