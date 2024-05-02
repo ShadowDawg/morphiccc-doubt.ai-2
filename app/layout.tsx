@@ -18,12 +18,13 @@ const description =
   'A chatbot to help clear all your JEE & NEET doubts.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://doubt-dot-ai.vercel.app'),
+  //metadataBase: new URL('https://doubt-dot-ai.vercel.app'),
   title,
   description,
   openGraph: {
     title,
-    description
+    description,
+   
   },
   twitter: {
     title,
