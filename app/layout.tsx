@@ -18,7 +18,7 @@ const description =
   'A chatbot to help clear all your JEE & NEET doubts.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://morphic.sh'),
+  metadataBase: new URL('https://doubt-dot-ai.vercel.app'),
   title,
   description,
   openGraph: {
