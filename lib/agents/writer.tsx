@@ -71,6 +71,9 @@ export async function writer(
   DO NOT USE PARENTHESIS () FOR DISPLAYING MATH EQUATIONS. ONLY USE \`$$\` or \`$$$\` for inline and displayed math respectively!
   `
 
+  console.log("WRITER WAS FUCKING CALLED, CHECK IT OUT YOU BASTARD!!!\n Messages sent to writer: \n")
+  console.log(messages)
+  
   await experimental_streamText({
     // model: process.env.SPECIFIC_PROVIDER === 'anthropic' ?
     //   anthropic!(process.env.SPECIFIC_API_MODEL || 'claude-3-haiku-20240307') :

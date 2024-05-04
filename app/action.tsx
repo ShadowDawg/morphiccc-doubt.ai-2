@@ -75,7 +75,8 @@ async function submit(formData?: FormData, skip?: boolean) {
     while (
       useSpecificAPI
         ? toolOutputs.length === 0 && answer.length === 0
-        : answer.length === 0
+        // : answer.length === 0  // add `|| toolOutputs.length === 0` ???
+        : answer.length === 0 || toolOutputs.length !== 0  // added `|| toolOutputs.length === 0` !!!
     ) {
       // Search the web and generate the answer
       const { fullResponse, hasError, toolResponses } = await researcher(
@@ -89,6 +90,11 @@ async function submit(formData?: FormData, skip?: boolean) {
       errorOccurred = hasError
     }
 
+    // console.log("Researcher output:")
+    // console.log(answer)
+    // console.log(toolOutputs)
+    // console.log(errorOccurred)
+
     // If useSpecificAPI is enabled, generate the answer using the specific model
     if (useSpecificAPI && answer.length === 0) {
       // modify the messages to be used by the specific model
@@ -97,6 +103,8 @@ async function submit(formData?: FormData, skip?: boolean) {
           ? { ...msg, role: 'assistant', content: JSON.stringify(msg.content) }
           : msg
       ) as ExperimentalMessage[]
+      // console.log(modifiedMessages)
+      // console.log(messages)
       answer = await writer(uiStream, streamText, modifiedMessages)
       // let answr = await researcher(uiStream, streamText, modifiedMessages)
       // console.log(answer)

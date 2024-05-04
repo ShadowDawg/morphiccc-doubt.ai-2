@@ -1,5 +1,6 @@
 import { createStreamableUI, createStreamableValue } from 'ai/rsc'
 import {
+  AssistantContent,
   ExperimentalMessage,
   ToolCallPart,
   ToolResultPart,
@@ -37,7 +38,7 @@ export async function researcher(
   )
 
   const system_pormpt = `
-  You are a language model designed to assist high school students with their academic inquiries. Your main role is to utilize the "solutions_to_problem" web search tool to find detailed solutions for the users' questions. Given the vast information available online, it's highly probable that solutions to students' questions can already be found on the web. Therefore, your first step should always involve using the "solutions_to_problem" tool to search the internet for the specific problem mentioned by the user, paying special attention to multiple-choice questions (MCQs) where the order of options might differ.
+  You are a language model designed to assist high school students with their academic inquiries. Your main role is to utilize the "get_solution_to_problem" web search tool to find detailed solutions for the users' questions. Given the vast information available online, it's highly probable that solutions to students' questions can already be found on the web. Therefore, your first step should always involve using the "solutions_to_problem" tool to search the internet for the specific problem mentioned by the user, paying special attention to multiple-choice questions (MCQs) where the order of options might differ.
 
   After finding relevant solutions, your task involves several critical steps:
 
@@ -78,6 +79,107 @@ export async function researcher(
   `
 
   let isFirstToolResponse = true
+  console.log("Messages sent to researcher: ")
+  console.log(messages)
+  console.log("Last message sent to researcher: \n\n")
+
+  console.log(messages[messages.length - 1])
+
+  // FIXING MESSAGE
+  type ResultEntry = {
+    content: string;
+    title: string;
+    url: string;
+  };
+
+  type ToolResult = {
+      type: string;
+      toolCallId: string;
+      toolName: string;
+      args: object;
+      result: {
+          images: string[];
+          query: string;
+          results: ResultEntry[];
+      };
+  };
+
+  type ToolContent = {
+      role: string;
+      content: ToolResult[];
+  };
+
+  function extractContent(data: ToolContent): string {
+    let contentString = "";
+
+    // Check if data.content is indeed an array
+    if (Array.isArray(data.content)) {
+      const contentArray = data.content as ToolResult[];  // Type assertion
+      for (let i = 0; i < contentArray.length; i++) {
+        const toolResult = contentArray[i];
+        for (let j = 0; j < toolResult.result.results.length; j++) {
+            const result = toolResult.result.results[j];
+            if (result.title === "Toppr") {
+                contentString += "\n" + "Toppr:\n" + result.content
+                contentString += result.content + " ";
+            }
+            else if (result.title === "Byjus") {
+              contentString += "\n" + "Byjus:\n" + result.content
+              contentString += result.content + " ";
+            }
+        }
+      }
+  } else {
+      console.log('Expected data.content to be an array, but it was not.');
+      const contentArray = data.content as ToolResult[];  // Type assertion
+      for (let i = 0; i < contentArray.length; i++) {
+        const toolResult = contentArray[i];
+        for (let j = 0; j < toolResult.result.results.length; j++) {
+            const result = toolResult.result.results[j];
+            if (result.title === "Toppr") {
+                contentString += "\n" + "Toppr:\n" + result.content
+                contentString += result.content + " ";
+            }
+            else if (result.title === "Byjus") {
+              contentString += "\n" + "Byjus:\n" + result.content
+              contentString += result.content + " ";
+            }
+        }
+      }
+  }
+
+    // TODO: Remove "Try BYJU's free classes today and shit from result!"
+
+    return contentString.trim();
+  }
+
+  const modifiedMessages = [...messages]; // Shallow copy of the original array
+
+  if (messages[messages.length - 1].role === 'tool') {
+    let lastMessage = messages[messages.length - 1] as ToolContent;
+    console.log("Edited Message:")
+    console.log(lastMessage)
+
+    let extractedContent = extractContent(lastMessage);
+    if (extractedContent === '') {
+      extractedContent = 'No solution found online, I must solve the problem myself and provide an excellent explanation.'
+    }
+    console.log("EXTRACTED DATAA! AAAH!")
+    console.log(extractedContent)
+
+    const modifiedMessages = [...messages]; // Shallow copy of the original array
+    modifiedMessages.pop(); // Remove the last message
+    const myMessage: ExperimentalMessage = {
+      role: "assistant",
+      content: extractedContent as AssistantContent
+    }
+    modifiedMessages.push(myMessage); // Add your own message
+
+  }
+
+  
+
+
   const result = await experimental_streamText({
     model: openai.chat(process.env.OPENAI_API_MODEL || 'gpt-4-turbo'),
     maxTokens: 2500,
@@ -88,7 +190,9 @@ export async function researcher(
     // Whenever quoting or referencing information from a specific URL, always cite the source URL explicitly.
     // Please match the language of the response to the user's language.`,
     system: system_pormpt,
-    messages,
+    //messages,
+    messages: modifiedMessages,  // TESTING MODIFIED LAST MESSAGE
+    
     tools: {
       get_solution_to_problem: {
         description: 'Call this function with the user problem as argument, the argument must be the exact same as the user problem, word for word',
@@ -236,7 +340,7 @@ async function get_sol(
   }
 
   const data = await response.json()
-  console.log(data)
+  // console.log(data)
   return data
 }
 
@@ -266,7 +370,7 @@ async function tavilySearch(
   }
 
   const data = await response.json()
-  console.log(data)
+  // console.log(data)
   return data
 }
 
