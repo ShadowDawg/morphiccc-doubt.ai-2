@@ -192,6 +192,7 @@ export async function researcher(
     system: system_pormpt,
     //messages,
     messages: modifiedMessages,  // TESTING MODIFIED LAST MESSAGE
+    temperature: 0.0,
     
     tools: {
       get_solution_to_problem: {
