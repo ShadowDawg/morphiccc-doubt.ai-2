@@ -22,15 +22,17 @@ export const metadata: Metadata = {
   title,
   description,
   openGraph: {
+    type: "website",
     title,
     description,
-   
+    url: 'https://doubt-dot-ai.vercel.app',
+    images: [{url: 'https://iili.io/Jr2aD7e.png'}]
   },
   twitter: {
     title,
     description,
     card: 'summary_large_image',
-    creator: '@miiura'
+    creator: '@DevvMandal'
   }
 }
 
